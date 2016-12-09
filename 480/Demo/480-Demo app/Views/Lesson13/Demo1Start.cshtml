@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+
+0. Create a global var called ws
+1. Add a $(document).ready( function
+2. Add a click event for btnConnect
+3. In the click event update spanStatus with the text Connecting
+4. Create a new websocket with the url "ws://localhost:6805/api/WSChat" and assign that object to the ws var
+5. Add the following event
+ws.onopen = function () {
+$("#spanStatus").text("connected");
+};
+6. Create a ws.onmessage event that updates the spanstatus with the text that the server returns
+7. add the following code
+ws.onerror = function (evt) {
+$("#spanStatus").text(evt.message);
+};
+ws.onclose = function () {
+$("#spanStatus").text("disconnected");
+};
+8. Create a click event for btnSend
+9. In the event check if readyState is OPEN for the websocket and send the textInput
+10 if the readystate is not open add an else statement with the following code
+$("#spanStatus").text("Connection is closed");
+11. Add a disconnect event $("#btnDisconnect").click(function () {
+ws.close();
+});
+
+-->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo1Start</title>
+</head>
+<body>
+    <input type="button" value="Connect" id="btnConnect" />
+    <input type="button" value="Disconnect" id="btnDisconnect" /><br />
+    <input type="text" id="textInput" />
+    <input type="button" value="Send" id="btnSend" /><br />
+    <span id="spanStatus">(display)</span>
+</body>
+</html>

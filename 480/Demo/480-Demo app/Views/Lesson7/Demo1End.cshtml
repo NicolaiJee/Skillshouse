@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Add a person employee object with the following properties name, age salary
+2. Implement a payRise function.
+3. Add a button that increases the salary by 1000 and alerts the new salary
+4. Create a new bankaccount object using a constructor add the following private properties _accountnumber, _name and the public properties balance, transactions (array)
+5. Create a prototype of the bankaccount that can make deposit and withdraw money. In the deposit and withdraw method you must make a entry in the array that tells the action performed and when and the new balance
+6. Update the bank account object so that it can return _accountnumber, _name
+7. Add a new div with a input type text and a input type button to withdraw money
+8. Add a new div with a input type text and a input type button to deposit money
+9. Add methods to withdraw or deposit money when the user clicks the buttons
+10. Add a new div and write out the entire log
+    11. Extra assignment change the methods so that it supports decimal numbers
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo1End</title>
+</head>
+<body>
+    <div>
+        <input type="button" id="btnPayRise" value="Increase salary" />
+    </div>
+    <div>
+        Enter a amount to withdraw
+        <input type="text" id="txtWithDraw" /> <input type="button" id="btnWithdraw" value="Withdraw" />
+    </div>
+    <div>
+        Enter a amount to deposit
+        <input type="text" id="txtDeposit" /> <input type="button" id="btnDeposit" value="Deposit" />
+    </div>
+<h2>Log</h2>
+    <div id="log"></div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var employee1 = {};
+        employee1.name = "John Smith";
+        employee1.age = 21;
+        employee1.salary = 10000;
+
+        employee1.payRise = function (amount) {
+            // Inside a method, "this" means the current object.
+            this.salary += amount;
+            return this.salary;
+        }
+
+        $("#btnPayRise").click(function () {
+            employee1.payRise(1000);
+            alert(employee1.salary);
+        });
+        var BankAccount = function (accountnumber, name) {
+            var _accountnumber = accountnumber;
+            var _name = name;
+            this.balance = 0;
+            this.transactions = [];
+            this.getname = function () {
+                return this._name;
+            };
+            this.getaccountnumber = function () {
+                return this._accountnumber;
+            };
+        };
+        BankAccount.prototype = {
+            deposit: function (amount) {
+                this.balance += amount;
+                this.transactions.push({ balance: this.balance, text: "deposit", date: new Date() });
+                this.writelog();
+            },
+            withdraw: function (amount) {
+                this.balance -= amount;
+                this.transactions.push({ balance: this.balance, text: "withdraw", date: new Date() });
+                this.writelog();
+            },
+            writelog: function () {
+                $("#log").empty();
+                for (var i = 0; i < this.transactions.length; i++) {
+                    var t = this.transactions[i];
+                    $("#log").append("<p>" +
+                        t.date.toString() + " " +
+                        t.text + " " +
+                        t.balance
+                        +"</p>");
+                }
+            }
+        };
+        var acc = new BankAccount('1245', 'John Doe');
+        $('#btnWithdraw').click(function () {
+            acc.withdraw(parseFloat($('#txtWithDraw').val().replace(',', '.')));
+        });
+        $('#btnDeposit').click(function () {
+            acc.deposit(parseFloat($('#txtDeposit').val().replace(',', '.')));
+        });
+    </script>
+</body>
+</html>

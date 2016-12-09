@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+
+1. Add jquery from a cdn to the page
+2. add a div with the id content to the page
+3. Use a for loop to create 10 labels and append them to the content div with out using jquery, tip look at the innerHTML property or append child, appendchild is preffered
+4. Same a in assignment 3 but use jquery to do the same
+5. Get child count in content not using jquery
+6. Same as 5 but using jquery
+7. Add a div with mouseover not using jquery
+8. Same as 7 but using jquery
+9. add a input at set the value using jquery
+10 add a input and copy the entered to a div
+11. set focus on a input when the page has loaded
+12. Add a class to all labels that makes the text bigger
+    
+
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo1End</title>
+    <style>
+        .testClass {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+</div>
+    <div id="div1"> jquery mouse over</div>
+<div id="div2"> normal mouse over</div>
+
+<div>
+    <input type="text" id="txt"/>
+    <input type="text" id="txtCopyValue"/>
+    <div id="divOutPut"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    for (var i = 0; i < 10; i++) {
+        var node = document.createElement("label");                 // Create a <li> node
+        var textnode = document.createTextNode(i);         // Create a text node
+        node.appendChild(textnode);
+        document.getElementById('content').appendChild(node);
+    }
+    for (var i = 10; i < 20; i++) {
+       $('#content').append('<label>' + i + '<label>');
+    }
+    alert(document.getElementById('content').children.length);
+    alert($('#content').children().length);
+    document.getElementById('div2').onmouseover =
+  function () { alert('normal text'); };
+    $('#div1').mouseover(function (){alert('jquery text');});
+    $('#txt').val('Denne tekst kommer fra javascript');
+    $('#txtCopyValue').keyup(function () { $('#divOutPut').html($('#txtCopyValue').val()); });
+    $('label').addClass('testClass');
+    $('#txtCopyValue').focus();
+</script>
+</body>
+
+
+</html>

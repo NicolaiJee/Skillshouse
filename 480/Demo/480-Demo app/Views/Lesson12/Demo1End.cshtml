@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Add a div to the body and give it a class
+2. Add a style to the div
+3. Add a hover style to the div and use transition to change the appereance of the div
+4. Add a transitionend event and display the elapsedtime property.
+
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo1End</title>
+    <style>
+        .test{
+            width: 300px;
+            background-color: yellow;
+            transition: width 2s, background-color 3750ms;
+        }
+
+            .test:hover {
+                width: 600px;
+                background-color: red;
+            }
+    </style>
+</head>
+<body>
+<div class="test" id="test">
+    asfasf
+</div>
+<script type="text/javascript">
+    function onTransitionend(e) {
+        var elapsedTime = e.elapsedTime;
+        alert(elapsedTime);
+    }
+
+    var test = document.getElementById("test");
+    test.addEventListener("transitionend", onTransitionend, true);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+
+The purpose of this exercise is to build a registration form
+Use the following structure for each field
+<div id=”*Field” class="field">
+    <input id="*" name="*" type="text"
+           placeholder="Description"/>
+    <label for="*">Label text</label>
+</div>
+Replace * with the fieldsname, enter a description and a label text
+
+
+1. Add a form with method post and action="/lesson4/demo1start"
+2. Add a legend to the form
+3. Add a javascript validation method
+4. Add css classes for input to indicate if the are valid or not
+5. Add a username field which is required and must not only contain spaces
+6. Add a password field which is required and must not only contain spaces
+7. Add a repeatpassword field which is required and must not only contain spaces and must have same value as the password
+8. Add a email field with same rules as username
+9. Add a age field with a interval between 0 and 125.
+10. Add a date field with a min date of 2000-1-1
+11. Add a text field that only allows capital letters from the danish alphabet and max 3 letters
+12. Extra assignment try to make the form validation as small as possible
+
+
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo1End</title>
+    <style>
+        input {
+            border: solid 1px;
+        }
+
+            input:invalid {
+                border-color: #f00;
+            }
+
+            input:valid {
+                border-color: #0f0;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="userRegistration" method="post" action="/lesson4/demo1end" onsubmit="return validateMyForm(this);">
+            <fieldset>
+                <legend>Enter your details to create your user profile :</legend>
+                <div id=”usernameField” class="field">
+                    <input id="username" name="username" type="text"
+                           placeholder="Username" required />
+                    <label for="username">Username:</label>
+                </div>
+                <div id="passwordField" class="field">
+                    <input id="password" name="password" type="password"
+                           placeholder="Password" required />
+                    <label for="password">Password:</label>
+                </div>
+                <div id="repeatpasswordField" class="field">
+                    <input id="repeatpassword" name="repeatpassword" type="password"
+                           placeholder="Repeat Password" required />
+                    <label for="password">Repeat Password:</label>
+                </div>
+                <div id=”emailField” class="field">
+                    <input id="email" name="email" type="email"
+                           placeholder="Email" required />
+                    <label for="email">Email</label>
+                </div>
+                <div id=”ageField” class="field">
+                    <input id="age" name="age" type="number" min="0" max="125"
+                           placeholder="Description" />
+                    <label for="age">Label text</label>
+                </div>
+                <div id=”DateField” class="field">
+                    <input id="date" name="date" type="date" min="2000-01-01"
+                           placeholder="Description" />
+                    <label for="date">Date </label>
+                </div>
+                <div id=”bigLettersField” class="field">
+                    <input id="bigLetters" name="bigLetters" type="text" pattern="[A-ZÆØÅ]{1,3}"
+                           placeholder="Description" required />
+                    <label for="bigLetters">Big letters (A-Å) </label>
+                </div>
+
+            </fieldset>
+            <input type="submit" value="Send" />
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function validateMyForm() {
+            var valid = true;
+            $(':input[required]').each(function () {
+                if ($(this).val().trim().length == 0) {
+                    alert($(this).prop('id')+ " must be filled out and can't be empty");
+                    valid = false;
+                }
+            });
+
+            if ($('#password').val() !== $('#repeatpassword').val()) {
+                alert("The passwords must match");
+                valid = false;
+            }
+            return valid;
+        }
+
+    </script>
+</body>
+</html>

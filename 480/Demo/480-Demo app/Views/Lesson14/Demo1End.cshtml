@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Convert the worker to a shared work
+-->
+<html>
+<head>
+    <script type="text/javascript">
+  function launchPiWebWorker() {
+      var worker = new SharedWorker('/Scripts/Lesson14/Demo1Shared.js',"sharedworker1");
+      worker.port.start();
+      worker.port.onmessage = function (e) {
+      document.getElementById("PiValue").innerHTML = e.data.PiValue;
+    };
+      worker.port.onerror = function (e) {
+      alert('Error: Line ' + e.lineno + ' in ' + e.filename + ': ' + e.message);
+    };
+
+    //start the worker
+      worker.port.postMessage({
+          'cmd': 'CalculatePi',
+                        'value': document.getElementById("loop").value
+                      });
+  }
+
+    </script>
+</head>
+<body>
+    <label for="loop">Enter the number of cycles:</label>
+    <input id="loop" type="number" value="100" />
+    <input type="button" onclick="launchPiWebWorker()" value="Calculate Pi" />
+    <br>
+    <br>
+    <div id="PiValue">PI value appears here</div>
+</body>
+</html>

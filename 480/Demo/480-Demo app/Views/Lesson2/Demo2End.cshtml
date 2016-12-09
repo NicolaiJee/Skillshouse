@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Add a new css file
+2. Add a font-family for the body
+3. Add padding style for the header and a dotted border in the bottom, also style the h1 tag of the header
+4. Add a section style with bottom padding and bottom border that is solid
+5. Style the different form elements
+
+
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Content</title>
+    <link href="~/Content/Lesson2/Demo2End.css" rel="stylesheet" />
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <header>
+        <h1>Contact Us</h1>
+        <h3>For further info</h3>
+    </header>
+    <form id="frm" method="Post" action="/Lesson2/Demo2End">
+        <fieldset>
+            <legend>
+                Your Details and Enquiry
+            </legend>
+            <ol>
+                <li>
+                    <label>
+                        <strong>Name</strong><br />
+                        <input type="text"
+                               name="UserName" />
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        Telephone<br />
+                        <input type="text" 
+                               name="Phone" />
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        Email Address<br />
+                        <input type="text" required="required"
+                               name="Email" id="Email" />
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <strong>Message</strong><br />
+                        <textarea name="Message"
+                                  cols="30" rows="10">
+                            Add your message here
+                        </textarea>
+                    </label>
+                </li>
+            </ol>
+        </fieldset>
+        <input type="submit" value="Send" />
+    </form>
+    <article>
+        <h1>Articleheader</h1>
+        <section>
+            <h1>How to</h1>
+            <ul>
+                <li>Sleep</li>
+                <li>Run</li>
+            </ul>
+        </section>
+        <section>
+            <h1>Method</h1>
+            <ol>
+                <li>Shoes</li>
+                <li>Running clothes</li>
+                <li>Hello</li>
+            </ol>
+        </section>
+    </article>
+    <footer><small><mark>Last updated</mark> on <time datetime="2012-08-12">August 12, 2012</time></small></footer>
+</body>
+</html>

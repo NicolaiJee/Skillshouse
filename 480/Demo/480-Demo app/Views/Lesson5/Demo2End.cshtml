@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Add 3 divs below the button
+2. Add a click event to the button using jquery
+3. In the funtion create a object with a property called obj and set the property value to what the user has entered in the txtInput textbox
+4. Add a xmlHttprequest that posts the object to /ajax/PostTest and the result to the first div
+5.Add a jquery post request that posts the object to /ajax/PostTest and the result to the second div
+6.Add a jquery ajax request that posts the object to /ajax/PostTest and the result to the third div
+7. if the xmlhttprequest isn't working then look into FormData object
+    -->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo2End</title>
+</head>
+<body>
+<div>
+    <div>
+        <label>Enter a text value</label>
+        <input type="text" id="txtInput" /> <input type="button" value="Post" id="btnSendInput" />
+        <div id="result1"></div>
+        <div id="result2"></div>
+        <div id="result3"></div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $('#btnSendInput').click(
+        function() {
+            var obj = { input: $('#txtInput').val() };
+            var formData = new FormData();
+            formData.append("input", $('#txtInput').val());
+            try {
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById('result1').innerHTML = this.responseText;
+                    }
+                    else if (this.readyState == 4 && this.status != 200) {
+                        alert("Error " + this.status + " - " + this.statusText);
+                    }
+
+                };
+                xhttp.open("POST", "/ajax/PostTest");
+                //xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                //xhttp.setRequestHeader("Content-length", formData);
+                xhttp.send(formData);
+
+
+
+
+
+                $.post('/ajax/PostTest', obj, function (data) {
+                    $('#result2').text(data);
+                }).fail(function () {
+                    alert("error occurred during get operation");
+                });
+
+                $.ajax({
+                    url: '/ajax/PostTest',
+                    type: 'post',
+                    data:obj,
+                    timeout: 12000,
+                    dataType: 'text'
+                }).done(function (responseText) {
+                    $('#result3').text(responseText);
+                }).fail(function () {
+                    alert('An error has occurred - you may not have been entered');
+                });
+
+
+            } catch (e) {
+                alert(e);
+            }
+        });
+</script>
+</body>
+</html>

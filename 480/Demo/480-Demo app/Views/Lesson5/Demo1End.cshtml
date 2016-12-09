@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Create a xmlhttprequest object
+2. Add a div with the id content
+3. Make a get request to /ajax/CurrentTime
+4. Make a if statement to check if the response status is ok
+5. Use the onreadystatechange to find readystate 4 and insert the responseText in the content div
+6. Remember to enclose your code in a try/catch block
+7. Make a new div called jquerycontent
+8. Make a jquery get call /ajax/CurrentTime
+9. insert the result in jquerycontent div
+10. Remember to enclose your code in a try/catch block
+11. Make a new div called jquerycontent
+12. Make a jquery ajax get call /ajax/CurrentTime
+13. insert the result in jquerycontent2 div
+14. Remember to enclose your code in a try/catch block
+
+
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo1End</title>
+</head>
+<body>
+<div id="content">
+</div>
+    <div id="jquerycontent"></div>
+    <div id="jquerycontent2"></div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+    try {
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('content').innerHTML = this.responseText;
+            }
+            else if (this.readyState == 4 &&  this.status != 200) {
+                alert("Error " + this.status + " - " + this.statusText);
+            }
+
+        };
+        xhttp.open("GET", "/ajax/CurrentTime", true);
+        xhttp.send();
+
+
+        
+        
+        $.get('/ajax/CurrentTime', function (data) {
+            $('#jquerycontent').text(data);
+        }).fail(function () {
+            alert("error occurred during get operation");
+        });
+        
+        $.ajax({
+            url: '/ajax/CurrentTime',
+            type: 'GET',
+            timeout: 12000,
+            dataType: 'text'
+        }).done(function (responseText) {
+            $('#jquerycontent2').text(responseText);
+        }).fail(function () {
+            alert('An error has occurred - you may not have been entered');
+        });
+
+
+    } catch (e) {
+        alert(e);
+    }
+
+</script>
+
+</body>
+</html>

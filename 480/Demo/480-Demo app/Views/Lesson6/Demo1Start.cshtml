@@ -1,0 +1,58 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Change the div style to get all divs on the same line using display: inline;
+2. Change display to inline-block. Why are the not aligned in the top ?
+3. Change display to display:-ms-flexbox
+4. Change display to display:table-cell;
+5.Remove the display attribute
+6. Add the following style
+#three {
+top: 2em;
+left: 2em;
+position: relative;
+}
+7. Change position to absolute
+8. Change position to fixed
+9. What is the difference between absolute and fixed ?
+
+-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Positioning Demo</title>
+    <style type="text/css">
+        body {
+            text-align: center;
+        }
+
+        article {
+            padding: 10px;
+            border: 2px solid red;
+        }
+
+        div {
+            margin: 10px;
+            padding: 5px;
+            border: 2px solid black;
+            width: 150px;
+            height: 150px;
+        }
+
+            div:nth-child(odd) {
+                font-size: 4rem;
+            }
+    </style>
+</head>
+<body>
+    <article>
+        <div id="one">One</div>
+        <div id="two">Two</div>
+        <div id="three">Three</div>
+        <div id="four">Four</div>
+    </article>
+</body>
+</html>

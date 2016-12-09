@@ -45,3 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.dll
+480/Demo/480-Demo app/bin/Newtonsoft.Json.xml
+*.exe
+480/Demo/480-Demo app/bin/roslyn/Microsoft.CSharp.Core.targets
+*.targets
+480/Demo/480-Demo app/bin/roslyn/VBCSCompiler.exe.config
+*.xml
+*.pdb

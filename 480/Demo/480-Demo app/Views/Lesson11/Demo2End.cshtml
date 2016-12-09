@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Add a canvas to the page
+2. Add script to the page to draw on the canvas
+3. Add a style to the canvas
+4. Draw a line from top left to lower rigth corner
+5. Add a new canvas and scale it
+
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo2End</title>
+   
+</head>
+<body>
+<div>
+    <h1>Getting started with canvas</h1>
+    <canvas id="myCanvas">No canvas support</canvas>
+    <br/>
+    <canvas id="myCanvas2">No canvas support</canvas>
+
+</div>
+<script type="text/javascript">
+    var canvas = document.getElementById('myCanvas');
+    var context = canvas.getContext('2d');
+    context.fillStyle = "red";
+    context.fillRect(20, 20, canvas.width, canvas.height);
+    //var ctx = c.getContext("2d");
+    context.beginPath();
+    context.moveTo(20, 20);
+    context.lineTo(300, 150);
+    context.stroke();
+    //Scale the canvas
+
+    var c = document.getElementById("myCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.strokeRect(5, 5, 25, 15);
+    ctx.scale(2, 2);
+    ctx.strokeRect(5, 5, 25, 15);
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+<!--
+1. Use the session storage code from the slides and  test if the session storage is cleared when you close the browser and return to the Page
+2. Use the local storage code from the slides and  test if the local storage is cleared when you close the browser and return to the Page
+-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo1Start</title>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+<script type="text/javascript">
+
+    alert(sessionStorage.myKey == null ? "No sessionStorage value" : sessionStorage.myKey);
+    sessionStorage.myKey = "some sessionStorage value";
+    alert(sessionStorage.myKey);
+
+
+    alert(localStorage.myKey == null ? "No localStorage value" : localStorage.myKey);
+    localStorage.myKey = "some localStorage value";
+    alert(sessionStorage.myKey);
+
+    
+</script>
+</html>
