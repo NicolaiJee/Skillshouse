@@ -53,3 +53,8 @@ Temporary Items
 480/Demo/480-Demo app/bin/roslyn/VBCSCompiler.exe.config
 *.xml
 *.pdb
+480/Demo/packages/Modernizr.2.6.2/Content/Scripts/modernizr-2.6.2.js
+*.nupkg
+/480/Demo/packages
+/480/Demo/480-Demo app/bin
+/480/Demo/480-Demo app/obj
